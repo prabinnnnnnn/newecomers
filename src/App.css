@@ -5,3 +5,7 @@
   box-sizing: border-box;
   scrollbar-width: 0px;
 }
+
+html {
+  scroll-behavior: smooth;
+}
