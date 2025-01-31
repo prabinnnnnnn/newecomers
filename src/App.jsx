@@ -1,6 +1,5 @@
-import { data, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import "./App.css";
-import NavBar from "./components/NavBar";
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 
@@ -11,8 +10,8 @@ function App() {
 
   const dataFetch = async () => {
     try {
-      const respond = await axios.get("https://dummyjson.com/products");
-      setData(respond.data.products);
+      const respond = await axios.get("https://fakestoreapi.com/products");
+      setData(respond.data);
     } catch (error) {
       console.log(error);
     }
@@ -23,12 +22,9 @@ function App() {
   }, []);
 
   return (
-    <div className="h-screen w-screen bg-[#faf9f6] grid grid-rows-[10%,90%] max-sm:grid-rows-[9%,91%]">
+    <div className="h-screen w-full bg-[#faf9f6]">
       <ContextData.Provider value={data}>
-        <NavBar />
-        <div className="overflow-y-scroll">
-          <Outlet />
-        </div>
+        <Outlet />
       </ContextData.Provider>
     </div>
   );

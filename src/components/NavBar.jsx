@@ -1,54 +1,95 @@
-import React from "react";
-import { IoIosSearch } from "react-icons/io";
+import React, { useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
+import { IoSearch } from "react-icons/io5";
+import { Link } from "react-router-dom";
+import SearchItems from "./searchItems";
 
-export default function NavBar() {
-  const getSearchVal = (e) => {
-    console.log(e.target.value);
+const NavBar = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSearchItemsOpen, setSearchItemsOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
   };
 
+  const toggleMobileMenu = () => setIsMobileMenuOpen((prev) => !prev);
+
   return (
-    <header className="shadow-sm w-screen">
+    <header className="w-full">
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <div className="flex items-center max-sm:hidden">
-            <span className=" font-[Manjari] text-xl font-extralight text-gray-500 uppercase">Kanoa store</span>
+          {/* Mobile Menu Button */}
+          <div className="sm:hidden">
+            <button onClick={toggleMobileMenu} className="text-gray-500 hover:text-gray-700" aria-label="Open Menu">
+              <svg
+                className="h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+              </svg>
+            </button>
           </div>
 
-          <div className="flex-1 max-w-2xl mx-8">
+          {/* Logo */}
+          <div className="hidden sm:flex items-center">
+            <span className="font-[Manjari] text-xl font-extralight text-gray-500 uppercase">Kanoa Store</span>
+          </div>
+
+          {/* Search Bar */}
+          <div className="flex-1 max-w-2xl mx-2 sm:mx-8">
             <div className="relative">
               <input
-                onChange={getSearchVal}
+                value={searchQuery}
+                onChange={handleSearch}
+                onFocus={() => setSearchItemsOpen(true)}
+                onBlur={() => setTimeout(() => setSearchItemsOpen(false), 200)} // Delay for dropdown interaction
                 type="text"
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-custom focus:border-custom"
-                placeholder="Search for products..."
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                placeholder="Search for product or category"
               />
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <IoIosSearch className="text-[1.4rem] text-gray-400" />
+                <IoSearch className="h-5 w-5 text-gray-400" />
               </div>
             </div>
+            {isSearchItemsOpen && <SearchItems query={searchQuery} />}
           </div>
 
-          <div className="flex items-center space-x-8 box-border px-4 max-sm:px-0">
-            <a href="#" className="text-gray-700 hover:text-custom relative" title="Card">
-              <FaShoppingCart className="fas fa-shopping-cart text-xl" />
-              <span className="absolute -top-2 -right-2 bg-custom text-white text-[0.5rem] font-bold rounded-full size-3 bg-gray-700 flex items-center justify-center">
-                3
+          {/* Right Section */}
+          <div className="flex items-center space-x-4 sm:space-x-6 px-2 sm:px-4">
+            {/* Cart */}
+            <Link to="/cart" className="text-gray-700 hover:text-blue-500 relative" title="Cart">
+              <FaShoppingCart className="h-5 w-5" />
+              <span className="absolute -top-2 -right-2 bg-gray-400 text-white text-[0.6rem] leading-3 font-bold rounded-full w-4 h-4 flex items-center justify-center">
+                0
               </span>
-            </a>
+            </Link>
 
-            <div className="size-8 bg-slate-500 rounded-full overflow-hidden" title="Account">
+            {/* Profile */}
+            <div className="w-8 h-8 border rounded-full overflow-hidden" title="Account">
               <img
-                src="https://images.pexels.com/photos/1542085/pexels-photo-1542085.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="profile"
+                src="https://cdni.iconscout.com/illustration/premium/thumb/man-3335553-2790260.png" // Fallback placeholder
+                alt="Profile"
                 className="w-full h-full object-cover"
               />
             </div>
           </div>
         </div>
 
-        <nav className="py-2 h-full max-w-2xl"></nav>
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="sm:hidden py-4 border-t border-gray-200">
+            <div className="flex items-center px-2">
+              <span className="font-[Manjari] text-xl font-extralight text-gray-500 uppercase">Kanoa Store</span>
+            </div>
+          </div>
+        )}
       </div>
     </header>
   );
-}
+};
+
+export default NavBar;

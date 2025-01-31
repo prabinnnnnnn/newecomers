@@ -6,6 +6,10 @@
   scrollbar-width: 0px;
 }
 
+:root {
+  --white: bg-[#faf9f6];
+}
+
 html {
   scroll-behavior: smooth;
 }
