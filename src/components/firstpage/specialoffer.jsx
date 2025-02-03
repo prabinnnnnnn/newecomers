@@ -15,7 +15,7 @@ export default function SpecialOffer() {
             View All
           </Link>
         </div>
-        <div className="grid grid-cols-4  gap-8 overflow-hidden box-border max-sm:grid-cols-1">
+        <div className="grid grid-cols-2 gap-8 overflow-hidden box-border sm:grid-cols-4">
           {data ? data.slice(0, 4).map((item, index) => <Cart key={index} item={item} />) : <ScaleTon />}
         </div>
       </div>

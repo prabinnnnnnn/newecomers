@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import Rating from "./rating";
 import { Button } from "./ui/button";
+import { toast } from "sonner";
 
 const Cart = ({ item }) => {
   const navigate = useNavigate();
@@ -12,15 +13,21 @@ const Cart = ({ item }) => {
       : item.price.toFixed(2);
   }, [item.price, item.discountPercentage]);
 
-  const buttonClick = React.useCallback((id) => {
-    console.log(id);
+  const handleButtonAddProduct = React.useCallback((e, item) => {
+    e.stopPropagation();
+    toast(`${item.title} has been added to cart`, {
+      action: {
+        label: "Undo",
+        onClick: () => console.log("Undo"),
+      },
+    });
   }, []);
 
   const handleProductReview = React.useCallback(() => {
     navigate(`/product`, {
       state: { productDetails: item },
     });
-  }, [navigate, item]);
+  }, [navigate, item.id]); // Avoid unnecessary re-renders by using item.id instead of entire item object
 
   return (
     <div
@@ -36,7 +43,9 @@ const Cart = ({ item }) => {
             alt={item.title}
             loading="lazy"
             className="absolute top-0 left-0 w-full h-full object-contain rounded-t-md"
-            style={{ background: `url('/loading-placeholder.gif') center center / cover no-repeat` }}
+            style={{
+              background: `url('/loading-placeholder.gif') center center / cover no-repeat`,
+            }}
             onError={(e) => {
               if (e.target.src !== "/api/placeholder/300/300") {
                 e.target.src = "/api/placeholder/300/300";
@@ -68,11 +77,8 @@ const Cart = ({ item }) => {
         </div>
 
         <Button
-          onClick={(e) => {
-            e.stopPropagation();
-            buttonClick(item.id);
-          }}
-          className="text-white w-full bg-blue-500 py-3 sm:py-6 rounded-md cursor-pointer hover:bg-blue-600 transition-colors text-sm sm:text-base"
+          onClick={(e) => handleButtonAddProduct(e, item)}
+          className="btn py-3 sm:py-6 rounded-md cursor-pointer text-sm sm:text-base"
         >
           Add to cart
         </Button>
@@ -82,12 +88,5 @@ const Cart = ({ item }) => {
 };
 
 export default React.memo(Cart, (prevProps, nextProps) => {
-  return (
-    prevProps.item.id === nextProps.item.id &&
-    prevProps.item.price === nextProps.item.price &&
-    prevProps.item.discountPercentage === nextProps.item.discountPercentage &&
-    prevProps.item.image === nextProps.item.image &&
-    prevProps.item.title === nextProps.item.title &&
-    prevProps.item.rating.rate === nextProps.item.rating.rate
-  );
+  return JSON.stringify(prevProps.item) === JSON.stringify(nextProps.item);
 });

@@ -2,8 +2,8 @@ import React, { useContext, useState, useEffect } from "react";
 import { ContextData } from "../App";
 import ScaleTon from "./scalton";
 import Cart from "./cart";
-import CategoryFilter from "./filter";
 import NavBar from "./NavBar";
+import { Categories } from "./category";
 
 const Shop = () => {
   const data = useContext(ContextData);
@@ -52,13 +52,13 @@ const Shop = () => {
     <div className="w-full h-screen grid grid-rows-[64px,1fr]">
       <NavBar />
 
-      <div className="h-full grid grid-cols-[180px,1fr] sm:grid-cols-[240px,1fr] bg-bl ">
-        <div className="p-4">
-          <CategoryFilter onFilterChange={handleFilterChange} />
+      <div className="grid grid-rows-[auto,1fr] bg-bl ">
+        <div className="p-4 sm:px-8 sm:py-2">
+          <Categories onFilterChange={handleFilterChange} />
         </div>
         <div className="relative overflow-hidden">
           <div className="absolute inset-0 p-4 overflow-y-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-6 auto-rows-max">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6 auto-rows-max">
               {isLoading ? (
                 <ScaleTon />
               ) : sortedData.length > 0 ? (

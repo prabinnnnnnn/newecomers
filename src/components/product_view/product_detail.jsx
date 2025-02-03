@@ -101,7 +101,9 @@ const ProductDetail = () => {
           <Accordion type="single" collapsible className="w-full">
             {["Features", "Care", "Shipping", "Returns"].map((section) => (
               <AccordionItem key={section} value={section}>
-                <AccordionTrigger>{section}</AccordionTrigger>
+                <AccordionTrigger>
+                  <div className="py-3">{section}</div>
+                </AccordionTrigger>
                 <AccordionContent>{section} content goes here.</AccordionContent>
               </AccordionItem>
             ))}

@@ -3,9 +3,12 @@ import { FaShoppingCart } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import SearchItems from "./searchItems";
+import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
+import { Input } from "./ui/input";
+import MenuBar from "./menuBar";
+import ThemeToggleButton from "./darkmode";
 
 const NavBar = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchItemsOpen, setSearchItemsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -13,25 +16,13 @@ const NavBar = () => {
     setSearchQuery(e.target.value);
   };
 
-  const toggleMobileMenu = () => setIsMobileMenuOpen((prev) => !prev);
-
   return (
     <header className="w-full">
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Mobile Menu Button */}
           <div className="sm:hidden">
-            <button onClick={toggleMobileMenu} className="text-gray-500 hover:text-gray-700" aria-label="Open Menu">
-              <svg
-                className="h-6 w-6"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
-              </svg>
-            </button>
+            <MenuBar />
           </div>
 
           {/* Logo */}
@@ -42,15 +33,16 @@ const NavBar = () => {
           {/* Search Bar */}
           <div className="flex-1 max-w-2xl mx-2 sm:mx-8">
             <div className="relative">
-              <input
+              <Input
                 value={searchQuery}
                 onChange={handleSearch}
                 onFocus={() => setSearchItemsOpen(true)}
-                onBlur={() => setTimeout(() => setSearchItemsOpen(false), 200)} // Delay for dropdown interaction
+                onBlur={() => setTimeout(() => setSearchItemsOpen(false), 200)}
                 type="text"
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
-                placeholder="Search for product or category"
+                className="w-full pl-10 pr-4 py-2 outline-0 border-gray-300 rounded-lg"
+                placeholder="Search...."
               />
+
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <IoSearch className="h-5 w-5 text-gray-400" />
               </div>
@@ -67,26 +59,16 @@ const NavBar = () => {
                 0
               </span>
             </Link>
-
             {/* Profile */}
-            <div className="w-8 h-8 border rounded-full overflow-hidden" title="Account">
-              <img
-                src="https://cdni.iconscout.com/illustration/premium/thumb/man-3335553-2790260.png" // Fallback placeholder
-                alt="Profile"
-                className="w-full h-full object-cover"
-              />
+            <Avatar className="size-7 rounded-full overflow-hidden hidden sm:block">
+              <AvatarImage src="https://github.com/shadcn.png" />
+              <AvatarFallback className="border">Pp</AvatarFallback>
+            </Avatar>
+            <div className="hidden sm:block">
+              <ThemeToggleButton></ThemeToggleButton>
             </div>
           </div>
         </div>
-
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="sm:hidden py-4 border-t border-gray-200">
-            <div className="flex items-center px-2">
-              <span className="font-[Manjari] text-xl font-extralight text-gray-500 uppercase">Kanoa Store</span>
-            </div>
-          </div>
-        )}
       </div>
     </header>
   );

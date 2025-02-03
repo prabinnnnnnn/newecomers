@@ -26,12 +26,12 @@ export default function Poster() {
     return () => clearTimeout(interval);
   }, [fashionImage]); */
   return (
-    <div className="relative max-w-8xl mx-auto px-8 py-4">
+    <div className="relative max-w-8xl mx-auto px-3 md:px-8 py-4">
       <div className="relative h-[550px] overflow-hidden">
         <img
           loading="lazy"
           src={summerImage[fashionImage].image}
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-left md:object-center"
           alt="Fashion Banner"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/65 to-transparent flex items-center justify-start  p-20 max-sm:p-2 max-sm:items-end">

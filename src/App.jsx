@@ -2,6 +2,8 @@ import { Outlet } from "react-router-dom";
 import "./App.css";
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
+import { Toaster } from "sonner";
+import { ThemeProvider } from "./components/ui/theme-provider";
 
 const ContextData = createContext();
 
@@ -22,9 +24,12 @@ function App() {
   }, []);
 
   return (
-    <div className="h-screen w-full bg-[#faf9f6]">
+    <div className="h-screen w-full bg-background dark:bg-background">
       <ContextData.Provider value={data}>
-        <Outlet />
+        <ThemeProvider>
+          <Outlet />
+          <Toaster />
+        </ThemeProvider>
       </ContextData.Provider>
     </div>
   );
