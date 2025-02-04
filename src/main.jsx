@@ -5,8 +5,6 @@ import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Main from "./components/firstpage/Main.jsx";
 import Shop from "./components/shop.jsx";
-import ItemsSummery from "./components/order/itemsSummery.jsx";
-import ProductView from "./components/product_view/productreview.jsx";
 import ProductDetail from "./components/product_view/product_detail";
 
 const router = createBrowserRouter([
@@ -19,8 +17,6 @@ const router = createBrowserRouter([
         element: <Main />,
       },
       { path: "/shop", element: <Shop /> },
-      { path: "/cart", element: <ItemsSummery /> },
-      // { path: "/product", element: <ProductView /> },
       { path: "/product", element: <ProductDetail /> },
     ],
   },

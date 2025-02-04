@@ -6,7 +6,7 @@ import Poster from "./poster";
 
 export default function Main() {
   return (
-    <main className=" h-screen">
+    <main className="h-screen">
       <NavBar />
       <Poster />
       <Category />

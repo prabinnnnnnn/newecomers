@@ -77,7 +77,7 @@ export default function SearchItems({ query }) {
   return (
     <div
       ref={listRef}
-      className="h-auto w-1/2 mt-5 rounded-md z-20 bg-slate-200 absolute overflow-y-auto py-2 max-h-[70%]"
+      className="h-1/2 w-1/2 mt-5 rounded-md z-20 bg-slate-200 absolute overflow-y-auto py-2 max-h-[70%]"
     >
       {filteredItems.length > 0 ? (
         filteredItems.map((item, index) => (

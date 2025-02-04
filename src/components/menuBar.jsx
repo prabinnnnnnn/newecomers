@@ -1,12 +1,12 @@
 import React from "react";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { RiMenu3Fill } from "react-icons/ri";
+import { Menu } from "lucide-react";
 
 export default function MenuBar() {
   return (
     <Sheet>
       <SheetTrigger>
-        <RiMenu3Fill className="h-6 w-6 fill-gray-400" />
+        <Menu className="size-6 mt-3" />
       </SheetTrigger>
       <SheetContent side={"left"}>
         <SheetHeader>

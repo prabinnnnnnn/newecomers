@@ -26,7 +26,7 @@ export default function Poster() {
     return () => clearTimeout(interval);
   }, [fashionImage]); */
   return (
-    <div className="relative max-w-8xl mx-auto px-3 md:px-8 py-4">
+    <div className="relative max-w-8xl mx-auto px-3 md:px-8 py-4 mt-16">
       <div className="relative h-[550px] overflow-hidden">
         <img
           loading="lazy"

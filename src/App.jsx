@@ -24,11 +24,11 @@ function App() {
   }, []);
 
   return (
-    <div className="h-screen w-full bg-background dark:bg-background">
+    <div className="h-screen w-full bg-background dark:bg-background dark:text-white ">
       <ContextData.Provider value={data}>
         <ThemeProvider>
           <Outlet />
-          <Toaster />
+          <Toaster theme="dark" />
         </ThemeProvider>
       </ContextData.Provider>
     </div>

@@ -14,9 +14,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useState } from "react";
 
 const sortOptions = [
-  { label: "Most Popular", value: "popular" },
   { label: "Best Rating", value: "rating" },
-  { label: "Newest", value: "newest" },
   { label: "Price: High to Low", value: "price-desc" },
   { label: "Price: Low to High", value: "price-asc" },
 ];
@@ -38,26 +36,21 @@ export function Categories({ onFilterChange }) {
     onFilterChange?.(updatedFilters);
   };
 
-  //#09090B black
-  // #FFFFFF
-  // #18181B
-
   return (
     <div className="flex justify-between items-center">
       {/* Sheet Trigger only wraps the Filter Button */}
       <Sheet>
         <SheetTrigger asChild>
-          <Button className="bg-white text-gray-700 border-gray-300 hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-700">
+          <Button className="bg-white text-gray-700 border-gray-300 hover:bg-gray-50 dark:bg-[#050506] dark:text-gray-300 dark:border-gray-600 dark:hover:bg-[#050506]">
             <IoFilterSharp />
             Filter
           </Button>
         </SheetTrigger>
         <SheetContent side={"left"}>
           <SheetHeader>
-            <SheetTitle>Category</SheetTitle>
-            <SheetDescription>
-              "Discover a curated selection of top-quality products across various categories. Shop with ease and find
-              everything you need, from the latest trends to everyday essentials."
+            <SheetTitle className="text-left">Category</SheetTitle>
+            <SheetDescription className="text-left">
+              "Discover a curated selection of top-quality products across various categories.
             </SheetDescription>
           </SheetHeader>
           <div className="flex gap-y-8 mt-3 justify-between">
@@ -71,7 +64,7 @@ export function Categories({ onFilterChange }) {
                       className={`capitalize transition-colors ${
                         filters.category === category.id
                           ? "bg-blue-500 text-white border-blue-500 hover:bg-blue-600 dark:hover:bg-blue-400"
-                          : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-700"
+                          : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50 dark:bg-[#050506] dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-700"
                       }`}
                     >
                       {category.name}
@@ -86,12 +79,12 @@ export function Categories({ onFilterChange }) {
 
       {/* Sort Dropdown (Outside SheetTrigger) */}
       <Select value={filters.sort} onValueChange={(value) => updateFilters({ sort: value })}>
-        <SelectTrigger className="w-[180px] bg-white text-black dark:bg-gray-800 dark:text-white">
+        <SelectTrigger className="w-[180px] bg-white text-black dark:bg-[#050506] dark:text-white">
           <SelectValue placeholder="Sort" />
         </SelectTrigger>
-        <SelectContent className="bg-white text-black dark:bg-gray-800 dark:text-white">
+        <SelectContent className="bg-white text-black dark:bg-[#050506] dark:text-white">
           {sortOptions.map((option) => (
-            <SelectItem key={option.value} value={option.value} className="hover:bg-gray-100 dark:hover:bg-gray-700">
+            <SelectItem key={option.value} value={option.value} className="hover:bg-gray-100 dark:hover:bg-[#0e0e11]">
               {option.label}
             </SelectItem>
           ))}

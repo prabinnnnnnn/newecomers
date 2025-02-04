@@ -3,9 +3,16 @@
   padding: 0;
   margin: 0%;
   box-sizing: border-box;
-  scrollbar-width: 0px;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
 }
 
 html {
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.custom-toast-title {
+  font-weight: bold !important;
 }

@@ -13,10 +13,7 @@ function ThemeToggleButton() {
   };
 
   return (
-    <Button
-      onClick={toggleTheme}
-      className={`${isDark ? "bg-gray-800 text-white hover:bg-gray-800" : "bg-white text-black hover:bg-white"}`}
-    >
+    <Button variant="ghost" onClick={toggleTheme} className="p-3" title="dark mode">
       {isDark ? <Sun size={18} /> : <Moon size={18} />}
     </Button>
   );

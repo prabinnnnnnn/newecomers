@@ -1,9 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
 import { ContextData } from "../App";
-import ScaleTon from "./scalton";
 import Cart from "./cart";
 import NavBar from "./NavBar";
 import { Categories } from "./category";
+import Loader from "./loader";
+import Footer from "./firstpage/footer";
 
 const Shop = () => {
   const data = useContext(ContextData);
@@ -49,18 +50,18 @@ const Shop = () => {
   };
 
   return (
-    <div className="w-full h-screen grid grid-rows-[64px,1fr]">
+    <div className="w-full h-screen">
       <NavBar />
 
-      <div className="grid grid-rows-[auto,1fr] bg-bl ">
-        <div className="p-4 sm:px-8 sm:py-2">
+      <div className="bg-bl mt-16">
+        <div className="p-3 sm:px-8 sm:py-4 border-b">
           <Categories onFilterChange={handleFilterChange} />
         </div>
         <div className="relative overflow-hidden">
-          <div className="absolute inset-0 p-4 overflow-y-auto">
+          <div className="inset-0 p-4 overflow-y-auto">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6 auto-rows-max">
               {isLoading ? (
-                <ScaleTon />
+                <Loader />
               ) : sortedData.length > 0 ? (
                 sortedData.map((item) => <Cart key={item.id} item={item} />)
               ) : (
@@ -71,6 +72,7 @@ const Shop = () => {
             </div>
           </div>
         </div>
+        <Footer></Footer>
       </div>
     </div>
   );

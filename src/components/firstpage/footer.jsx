@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white pt-16 pb-8">
+    <footer className="pt-16 pb-8 border-t">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-4 gap-8 mb-12">
           <div>
@@ -12,10 +12,10 @@ export default function Footer() {
               satisfaction.
             </p>
             <div className="flex space-x-4 mt-6">
-              <a href="#" className="text-gray-400 hover:text-white">
+              <a href="#" className="">
                 <i className="fab fa-facebook-f"></i>
               </a>
-              <a href="#" className="text-gray-400 hover:text-white">
+              <a href="#" className="">
                 <i className="fab fa-twitter"></i>
               </a>
               <a href="#" className="text-gray-400 hover:text-white">
