@@ -1,5 +1,5 @@
+import { ContextData } from "@/context/ContextDataProvide";
 import { useState, useEffect, useContext, useRef } from "react";
-import { ContextData } from "../../App";
 
 export default function SearchItems({ query }) {
   const data = useContext(ContextData);

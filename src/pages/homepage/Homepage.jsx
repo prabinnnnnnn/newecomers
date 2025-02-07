@@ -6,12 +6,10 @@ import Footer from "@/components/layouts/Footer";
 
 export default function HomePage() {
   return (
-    <main className="h-screen">
-      <NavBar />
+    <main className="">
       <Poster />
       <Category />
       <SpecialOffer />
-      <Footer />
     </main>
   );
 }

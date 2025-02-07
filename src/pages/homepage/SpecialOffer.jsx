@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import Cart from "@/components/layouts/CartCard";
 import { Link } from "react-router-dom";
-import { ContextData } from "@/App";
 import Loader from "@/components/loaders/Loader";
+import { ContextData } from "@/context/ContextDataProvide";
 
 export default function SpecialOffer() {
   const data = useContext(ContextData);

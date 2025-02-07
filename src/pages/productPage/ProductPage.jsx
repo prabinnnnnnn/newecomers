@@ -1,10 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
-import { ContextData } from "../../App";
-import NavBar from "@/components/layouts/NavBar";
+import { ContextData } from "@/context/ContextDataProvide";
 import { Categories } from "./category";
 import Loader from "@/components/loaders/Loader";
 import Cart from "@/components/layouts/CartCard";
-import Footer from "@/components/layouts/Footer";
 
 const ProductPage = () => {
   const data = useContext(ContextData);
@@ -52,9 +50,7 @@ const ProductPage = () => {
   };
 
   return (
-    <div className="w-full h-screen">
-      <NavBar />
-
+    <div className="w-full">
       <div className="bg-bl mt-16">
         <div className="p-3 sm:px-8 sm:py-4 border-b">
           <Categories onFilterChange={handleFilterChange} />
@@ -74,7 +70,6 @@ const ProductPage = () => {
             </div>
           </div>
         </div>
-        <Footer />
       </div>
     </div>
   );
