@@ -10,8 +10,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useCart } from "@/context/CartContext";
 
 const ProductDetail = () => {
+  const { addToCart, removeFromCart } = useCart();
+
   const [selectedColor, setSelectedColor] = useState("black");
   const [selectedImage, setSelectedImage] = useState(0);
   const { state } = useLocation();
@@ -28,10 +31,23 @@ const ProductDetail = () => {
   }
 
   const handleBack = () => navigate(-1);
-  const handleAddToCart = () => {
-    toast(state.productDetails.title, {
-      description: "Added to your bag",
-      className: "bg-gray-900 text-white font-semibold shadow-lg",
+
+  const handleAddToCart = (item) => {
+    addToCart(item);
+    Toster(item);
+  };
+
+  const Toster = (item) => {
+    return toast("Item has been added to your cart", {
+      description: (
+        <p className="text-black/80 dark:text-white/80 ">{item.title}</p>
+      ),
+      className:
+        "dark:bg-black dark:text-white bg-[#fff] border-gray-500 text-black text-sm font-semibold shadow-lg",
+      action: {
+        label: "Undo",
+        onClick: () => removeFromCart(item.id),
+      },
     });
   };
 
@@ -118,7 +134,10 @@ const ProductDetail = () => {
           </div>
 
           <div className="flex space-x-4">
-            <Button className="flex-1 p-6 rounded-md" onClick={handleAddToCart}>
+            <Button
+              className="flex-1 p-6 rounded-md"
+              onClick={() => handleAddToCart(state.productDetails)}
+            >
               Add to bag
             </Button>
             <button

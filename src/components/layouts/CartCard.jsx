@@ -15,7 +15,7 @@ import { useCart } from "../../context/CartContext";
 
 const Cart = ({ item }) => {
   const navigate = useNavigate();
-  const { addToCart } = useCart();
+  const { addToCart, removeFromCart } = useCart();
 
   const discountedPrice = React.useMemo(() => {
     return item.discountPercentage > 0
@@ -38,7 +38,7 @@ const Cart = ({ item }) => {
         "dark:bg-black dark:text-white bg-[#fff] border-gray-500 text-black text-sm font-semibold shadow-lg",
       action: {
         label: "Undo",
-        onClick: () => console.log("Undo clicked"),
+        onClick: () => removeFromCart(item.id),
       },
     });
   };
