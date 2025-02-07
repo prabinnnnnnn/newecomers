@@ -1,5 +1,5 @@
 import React from "react";
-import { Skeleton } from "./ui/skeleton";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function SkeletonCard() {
   return (
@@ -10,18 +10,22 @@ export default function SkeletonCard() {
         <Skeleton className="relative w-full pt-[100%]" />
 
         {/* Title and Price Skeletons */}
-        <div className="pt-4 flex flex-col gap-y-2">
+        <div className="pt-2 flex flex-col gap-y-2">
           {/* Title */}
-          <Skeleton className="h-2.5 rounded-md w-full" />
+          <Skeleton className="h-4 rounded-sm w-full pt-2" />
 
           {/* Price */}
-          <div className="flex flex-col sm:flex-row gap-2 sm:gap-x-4 mb-2">
-            <Skeleton className="h-2.5 rounded-md w-24" />
+          <div className="flex flex-col justify-between sm:flex-row gap-2 sm:gap-x-4 mb-2">
+            <Skeleton className="h-3 rounded-sm w-24" />
+            <Skeleton className="h-3 rounded-sm w-30" />
           </div>
         </div>
 
         {/* Button Skeleton */}
-        <Skeleton className="h-[38px] sm:h-[44px] rounded-md w-full mt-2" />
+        <Skeleton
+          duration={2}
+          className="h-[38px] sm:h-[44px] rounded-md w-full mt-2"
+        />
       </div>
     </div>
   );

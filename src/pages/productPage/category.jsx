@@ -9,9 +9,15 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { IoFilterSharp } from "react-icons/io5";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useState } from "react";
+import { Text } from "lucide-react";
 
 const sortOptions = [
   { label: "Best Rating", value: "rating" },
@@ -42,7 +48,7 @@ export function Categories({ onFilterChange }) {
       <Sheet>
         <SheetTrigger asChild>
           <Button className="bg-white text-gray-700 border-gray-300 hover:bg-gray-50 dark:bg-[#050506] dark:text-gray-300 dark:border-gray-600 dark:hover:bg-[#050506]">
-            <IoFilterSharp />
+            <Text size={28} strokeWidth={2} />
             Filter
           </Button>
         </SheetTrigger>
@@ -50,7 +56,8 @@ export function Categories({ onFilterChange }) {
           <SheetHeader>
             <SheetTitle className="text-left">Category</SheetTitle>
             <SheetDescription className="text-left">
-              "Discover a curated selection of top-quality products across various categories.
+              "Discover a curated selection of top-quality products across
+              various categories.
             </SheetDescription>
           </SheetHeader>
           <div className="flex gap-y-8 mt-3 justify-between">
@@ -60,7 +67,9 @@ export function Categories({ onFilterChange }) {
                   <SheetClose asChild key={category.id}>
                     <Button
                       onClick={() => updateFilters({ category: category.id })}
-                      variant={filters.category === category.id ? "default" : "outline"}
+                      variant={
+                        filters.category === category.id ? "default" : "outline"
+                      }
                       className={`capitalize transition-colors ${
                         filters.category === category.id
                           ? "bg-blue-500 text-white border-blue-500 hover:bg-blue-600 dark:hover:bg-blue-400"
@@ -78,13 +87,20 @@ export function Categories({ onFilterChange }) {
       </Sheet>
 
       {/* Sort Dropdown (Outside SheetTrigger) */}
-      <Select value={filters.sort} onValueChange={(value) => updateFilters({ sort: value })}>
+      <Select
+        value={filters.sort}
+        onValueChange={(value) => updateFilters({ sort: value })}
+      >
         <SelectTrigger className="w-[180px] bg-white text-black dark:bg-[#050506] dark:text-white">
           <SelectValue placeholder="Sort" />
         </SelectTrigger>
         <SelectContent className="bg-white text-black dark:bg-[#050506] dark:text-white">
           {sortOptions.map((option) => (
-            <SelectItem key={option.value} value={option.value} className="hover:bg-gray-100 dark:hover:bg-[#0e0e11]">
+            <SelectItem
+              key={option.value}
+              value={option.value}
+              className="hover:bg-gray-100 dark:hover:bg-[#0e0e11] font-semibold"
+            >
               {option.label}
             </SelectItem>
           ))}

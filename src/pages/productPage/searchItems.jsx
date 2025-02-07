@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext, useRef } from "react";
-import { ContextData } from "../App";
+import { ContextData } from "../../App";
 
 export default function SearchItems({ query }) {
   const data = useContext(ContextData);
@@ -20,7 +20,8 @@ export default function SearchItems({ query }) {
     if (e.key === "ArrowDown") {
       newIndex = (highlightedIndex + 1) % filteredItems.length; // Move down
     } else if (e.key === "ArrowUp") {
-      newIndex = highlightedIndex <= 0 ? filteredItems.length - 1 : highlightedIndex - 1; // Move up
+      newIndex =
+        highlightedIndex <= 0 ? filteredItems.length - 1 : highlightedIndex - 1; // Move up
     } else if (e.key === "Enter" && highlightedIndex >= 0) {
       alert(`Selected: ${filteredItems[highlightedIndex].title}`);
       return;
@@ -84,11 +85,17 @@ export default function SearchItems({ query }) {
           <div
             key={item.id || index}
             className={`p-5 rounded flex items-center gap-x-7 ${
-              index === highlightedIndex ? "bg-blue-200/70" : "hover:bg-blue-200/70"
+              index === highlightedIndex
+                ? "bg-blue-200/70"
+                : "hover:bg-blue-200/70"
             }`}
           >
             <div className="h-8 w-8 bg-black">
-              <img src={item.image} alt={item.title} className="object-cover w-full h-full" />
+              <img
+                src={item.image}
+                alt={item.title}
+                className="object-cover w-full h-full"
+              />
             </div>
             <span className="text-sm">{highlightText(item.title, query)}</span>
           </div>

@@ -67,7 +67,9 @@ const ProductReviews = () => {
                 <Star
                   key={i}
                   className={`w-5 h-5 ${
-                    i < Math.floor(stats.average) ? "text-yellow-400 fill-yellow-400" : "text-gray-300"
+                    i < Math.floor(stats.average)
+                      ? "text-yellow-400 fill-yellow-400"
+                      : "text-gray-300"
                   }`}
                 />
               ))}
@@ -79,16 +81,25 @@ const ProductReviews = () => {
         <div className="space-y-2">
           {[5, 4, 3, 2, 1].map((rating) => (
             <div key={rating} className="flex items-center gap-2">
-              <button className="text-sm hover:underline" onClick={() => setSelectedRating(rating)}>
+              <button
+                className="text-sm hover:underline"
+                onClick={() => setSelectedRating(rating)}
+              >
                 {rating} star
               </button>
               <div className="flex-1 h-2 bg-gray-200 rounded-full">
                 <div
                   className="h-2 bg-yellow-400 rounded-full"
-                  style={{ width: `${(stats.distribution[rating] / stats.total) * 100}%` }}
+                  style={{
+                    width: `${
+                      (stats.distribution[rating] / stats.total) * 100
+                    }%`,
+                  }}
                 />
               </div>
-              <span className="text-sm text-gray-600">{stats.distribution[rating]}</span>
+              <span className="text-sm text-gray-600">
+                {stats.distribution[rating]}
+              </span>
             </div>
           ))}
         </div>
@@ -123,11 +134,19 @@ const ProductReviews = () => {
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
-                    className={`w-4 h-4 ${i < review.rating ? "text-yellow-400 fill-yellow-400" : "text-gray-300"}`}
+                    className={`w-4 h-4 ${
+                      i < review.rating
+                        ? "text-yellow-400 fill-yellow-400"
+                        : "text-gray-300"
+                    }`}
                   />
                 ))}
               </div>
-              {review.verified && <span className="text-sm text-green-600">Verified Purchase</span>}
+              {review.verified && (
+                <span className="text-sm text-green-600">
+                  Verified Purchase
+                </span>
+              )}
             </div>
 
             <h3 className="font-semibold mb-2">{review.title}</h3>

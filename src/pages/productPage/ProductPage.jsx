@@ -1,12 +1,12 @@
 import React, { useContext, useState, useEffect } from "react";
-import { ContextData } from "../App";
-import Cart from "./cart";
-import NavBar from "./NavBar";
+import { ContextData } from "../../App";
+import NavBar from "@/components/layouts/NavBar";
 import { Categories } from "./category";
-import Loader from "./loader";
-import Footer from "./firstpage/footer";
+import Loader from "@/components/loaders/Loader";
+import Cart from "@/components/layouts/CartCard";
+import Footer from "@/components/layouts/Footer";
 
-const Shop = () => {
+const ProductPage = () => {
   const data = useContext(ContextData);
   const [sortedData, setSortedData] = useState([]);
   const [sortOrder, setSortOrder] = useState("");
@@ -19,7 +19,9 @@ const Shop = () => {
     let currentData = [...data];
 
     if (selectedCategory !== "all") {
-      currentData = currentData.filter((item) => item.category === selectedCategory);
+      currentData = currentData.filter(
+        (item) => item.category === selectedCategory
+      );
     }
 
     switch (sortOrder) {
@@ -72,10 +74,10 @@ const Shop = () => {
             </div>
           </div>
         </div>
-        <Footer></Footer>
+        <Footer />
       </div>
     </div>
   );
 };
 
-export default React.memo(Shop);
+export default React.memo(ProductPage);

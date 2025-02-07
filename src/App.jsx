@@ -1,9 +1,10 @@
-import { Outlet } from "react-router-dom";
-import "./App.css";
-import { createContext, useEffect, useState } from "react";
+import "./styles/App.css";
 import axios from "axios";
+import { Outlet } from "react-router-dom";
+import { createContext, useEffect, useState } from "react";
 import { Toaster } from "sonner";
 import { ThemeProvider } from "./components/ui/theme-provider";
+import { CartProvider } from "./context/CartContext";
 
 const ContextData = createContext();
 
@@ -24,13 +25,15 @@ function App() {
   }, []);
 
   return (
-    <div className="h-screen w-full bg-background dark:bg-background dark:text-white ">
-      <ContextData.Provider value={data}>
-        <ThemeProvider>
-          <Outlet />
-          <Toaster theme="dark" />
-        </ThemeProvider>
-      </ContextData.Provider>
+    <div className="h-screen w-full bg-background dark:bg-background dark:text-white">
+      <CartProvider>
+        <ContextData.Provider value={data}>
+          <ThemeProvider>
+            <Outlet />
+            <Toaster theme="dark" />
+          </ThemeProvider>
+        </ContextData.Provider>
+      </CartProvider>
     </div>
   );
 }

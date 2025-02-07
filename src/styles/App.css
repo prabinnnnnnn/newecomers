@@ -1,8 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
 * {
-  font-family: sans-serif, Manjari;
   padding: 0;
   margin: 0%;
   box-sizing: border-box;
+  font-family: "Roboto", serif;
+  font-weight: 400;
 }
 
 ::-webkit-scrollbar {
